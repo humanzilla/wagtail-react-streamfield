@@ -249,10 +249,13 @@ function initSlugAutoPopulate() {
         slugFollowsTitle = (currentSlug == slugifiedTitle);
     });
 
-    $('#id_title').on('keyup keydown keypress blur', function() {
+    $('#id_title').on('keyup keydown keypress blur', function(e) {
         if (slugFollowsTitle) {
             var slugifiedTitle = cleanForSlug(this.value, true);
             $('#id_slug').val(slugifiedTitle);
+        }
+        if(e.keyCode === 13) {
+            return false;
         }
     });
 }
