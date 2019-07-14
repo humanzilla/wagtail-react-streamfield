@@ -1,14 +1,15 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 
 module.exports = (env, argv) => {
   const config = {
-    entry: {'wagtail-react-streamfield': [
+    entry: {
+      'wagtail-react-streamfield': [
         './wagtail_react_streamfield/static_src/js/entry.js',
         './wagtail_react_streamfield/static_src/scss/entry.scss',
-      ]},
+      ]
+    },
     output: {
       path: path.resolve('wagtail_react_streamfield/static'),
       filename: 'js/[name].js',
@@ -28,13 +29,14 @@ module.exports = (env, argv) => {
             'css-loader',
             'sass-loader',
           ]
-        }, {
+        },
+        {
           test: /\.css$/,
-          loaders: [
+          use: [
             MiniCssExtractPlugin.loader,
             'css-loader',
-          ],
-        },
+          ]
+        }
       ],
     },
     plugins: [
